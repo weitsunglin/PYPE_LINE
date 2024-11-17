@@ -1,4 +1,4 @@
-# PYPE_LINE
+# pype_line
 由於架設 jenkins 流程過於繁瑣， 因此自製 windows pipeline 工具，可 call Windows CLI 及 Python api。
 
 - 有三個pending的stage準備被執行
