@@ -3,11 +3,6 @@ from stage import Stage
 from pipeline import Pipeline
 from pipeline_ui import PipelineUI
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
 def load_stage(script_path):
     spec = __import__(script_path, fromlist=['run'])
     return spec.run
@@ -15,6 +10,7 @@ def load_stage(script_path):
 if __name__ == "__main__":
     pipeline = Pipeline()
 
+    # 安裝stage
     stage1 = Stage(name="請先checkout win版環境", action=load_stage("stages.Tip"))
     stage2 = Stage(name="Visual Studio Debug ReleaseOpt", action=load_stage("stages.Debug_Release_OPT"), pre_task=[stage1])
     stage3 = Stage(name="cocos lua 加密 data", action=load_stage("stages.lua_to_dat"), pre_task=[stage2])
@@ -31,5 +27,6 @@ if __name__ == "__main__":
     pipeline.add_stage(stage6)
     pipeline.add_stage(stage7)
 
+    #工具UI
     pipeline_ui = PipelineUI(pipeline)
     pipeline_ui.start()

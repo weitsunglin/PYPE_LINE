@@ -6,6 +6,7 @@ from stage import Stage
 from status import Status
 
 class PipelineUI:
+
     def __init__(self, pipeline: Pipeline):
         self.pipeline = pipeline
         self.root = tk.Tk()
@@ -26,9 +27,11 @@ class PipelineUI:
         self.run_button = tk.Button(self.root, text="Run Pipeline", command=self.run_pipeline)
         self.run_button.pack(pady=10)
 
+
     def update_ui(self, stage: Stage, status: str):
         elapsed_time = f"{stage.elapsed_time:.2f}" if status in [Status.RUNNING, Status.SUCCESS, Status.FAILED] else "0.00"
         self.tree.item(stage.name, values=(stage.name, status, elapsed_time))
+
 
     def run_pipeline(self):
         if self.is_running:
@@ -38,9 +41,11 @@ class PipelineUI:
         self.run_button.config(state=tk.DISABLED)
         threading.Thread(target=self.pipeline.run, args=(self.update_ui, self.pipeline_finished)).start()
 
+
     def pipeline_finished(self):
         self.is_running = False
         self.run_button.config(state=tk.NORMAL)
+
 
     def start(self):
         self.root.mainloop()

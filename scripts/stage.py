@@ -3,6 +3,7 @@ import subprocess
 from status import Status
 
 class Stage:
+
     def __init__(self, name, action, pre_task=None):
         self.name = name
         self.action = action

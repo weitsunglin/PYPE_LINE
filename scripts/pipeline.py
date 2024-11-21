@@ -2,6 +2,7 @@ from stage import Stage
 from status import Status
 
 class Pipeline:
+
     def __init__(self):
         self.stages = []
 
