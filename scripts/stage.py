@@ -17,24 +17,23 @@ class Stage:
             if update_ui:
                 update_ui(self, self.status)
             return
+
         start_time = time.time()
-        try:
-            self.status = Status.RUNNING
-            while True:
-                time.sleep(0.1)
-                self.elapsed_time = time.time() - start_time
-                if update_ui:
-                    update_ui(self, self.status)
-                if isinstance(self.action, str):
-                    subprocess.run(self.action, shell=True, check=True, text=True)
-                    break
-                else:
-                    self.action()
-                    break
-            self.status = Status.SUCCESS
-        except Exception:
-            self.status = Status.FAILED
-        finally:
+        self.status = Status.RUNNING
+        while True:
+            time.sleep(0.1)
             self.elapsed_time = time.time() - start_time
             if update_ui:
                 update_ui(self, self.status)
+
+            if isinstance(self.action, str):
+                subprocess.run(self.action, shell=True, check=True, text=True)
+                break
+            else:
+                self.action()
+                break
+
+        self.status = Status.SUCCESS
+        self.elapsed_time = time.time() - start_time
+        if update_ui:
+            update_ui(self, self.status)

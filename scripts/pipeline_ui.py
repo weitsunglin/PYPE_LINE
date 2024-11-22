@@ -4,6 +4,7 @@ import threading
 from pipeline import Pipeline
 from stage import Stage
 from status import Status
+import os
 
 class PipelineUI:
 
@@ -12,7 +13,9 @@ class PipelineUI:
         self.root = tk.Tk()
         self.root.title("PYPE_LINE")
         self.root.geometry("600x400")
-        self.root.iconbitmap("icon2.ico")
+        current_dir = os.path.dirname(__file__)
+        icon_path = os.path.abspath(os.path.join(current_dir, "../icon2.ico"))
+        self.root.iconbitmap(icon_path)
         self.is_running = False
 
         self.tree = ttk.Treeview(self.root, columns=("Stage", "Status", "Elapsed Time"), show="headings", height=15)

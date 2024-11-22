@@ -13,6 +13,3 @@ set output_zip=%current_dir%python-3.12.4.7z
 
 :: 使用 7za.exe 壓縮文件夾，設置壓縮級別為最高，使用LZMA2方法
 "%seven_zip_exe%" a -t7z -mx=9 -m0=lzma2 "%output_zip%" "%target_dir%"
-
-:: 暫停腳本以便查看輸出結果
-pause
