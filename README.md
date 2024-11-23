@@ -1,5 +1,5 @@
 # pype_line
-由於架設 jenkins 流程過於繁瑣， 因此自製 windows pipeline 工具。
+由於架設 jenkins 流程過於繁瑣， 因此自製  pipeline 工具。
 
 - stage名稱/stage狀態/執行時間
 
